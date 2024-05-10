@@ -1,0 +1,57 @@
+---
+title: "Statistical Learning in Movies"
+author: "Max Sellers, Claire Martino, Ari Augustine, and Rim Nassiri"
+header-includes:
+  - \usepackage{float}
+  - \usepackage{amsmath}
+  - \floatplacement{figure}{H}
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r echo=FALSE}
+# if not installed use: install.packages("package_name")
+suppressWarnings(library(readxl))
+suppressWarnings(library(psych))
+suppressWarnings(suppressPackageStartupMessages(library(ggplot2)))
+```
+
+```{r echo=FALSE}
+# TODO: change the Actual Time format with just hours and min
+hanson_data= read.csv("MOVIES.csv")
+```
+
+
+$$H_T: \textrm{There is not difference in Average Wi-Fi speed between Hanson Hall of Science and Old Main.}$$
+$$H_A: \textrm{There is a difference between in average Wi-Fi speeds between Hanson Hall of Science and Old main.}$$
+$$\alpha=0.05$$
+
+### Abstract
+
+
+
+## I. Introduction
+
+## II. Methods
+
+### a. Cleaning Data
+
+### b. Choosing Important Values on Dataset
+
+### c. Training Data
+
+### d. Testing Data
+
+## III. Results
+
+### a. Graphs of Specific Data
+
+### b. Linear Regression Summary and Line
+
+### c. Multiple Linear Regression Summary
+
+## IV. Discussion
+
+
