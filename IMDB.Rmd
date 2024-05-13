@@ -4,6 +4,7 @@ author: "Max Sellers, Claire Martino, Ari Augustine, and Rim Nassiri"
 header-includes:
   - \usepackage{float}
   - \usepackage{amsmath}
+  - \usepackage{dplyr}
   - \floatplacement{figure}{H}
 output:
   pdf_document: default
@@ -20,7 +21,7 @@ suppressWarnings(suppressPackageStartupMessages(library(ggplot2)))
 
 ```{r echo=FALSE}
 # TODO: change the Actual Time format with just hours and min
-hanson_data= read.csv("MOVIES.csv")
+movies_data= read.csv("MOVIES.csv")
 ```
 
 
@@ -37,6 +38,11 @@ $$\alpha=0.05$$
 ## II. Methods
 
 ### a. Cleaning Data
+```{r}
+movies_data %>%
+  group_by(title) %>%
+  filter(budget != 0 & revenue != 0)
+```
 
 ### b. Choosing Important Values on Dataset
 
