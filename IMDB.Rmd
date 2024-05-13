@@ -39,13 +39,29 @@ $$\alpha=0.05$$
 
 ### a. Cleaning Data
 ```{r}
-movies_data %>%
-  group_by(title) %>%
-  filter(budget != 0 & revenue != 0 & vote_count > 100) %>%
-  arrange(desc(vote_average))
+#movies_data %>%
+  #group_by(title) %>%
+  #filter(budget != 0 & revenue != 0 & vote_count > 100) %>%
+  #arrange(desc(vote_average))
 ```
 
 ### b. Choosing Important Values on Dataset
+```{r}
+budget = movies_data$budget
+popularity = movies_data$popularity
+revenue = movies_data$revenue
+genre = movies_data$genre
+
+#number of cateogories and varaibles in the dataset
+catagories = ncol(movies_data)
+var = nrow(movies_data)
+
+#means of variables that will be using in analysis
+mean_budget = round(mean(budget),2)
+mean_popularity = round(mean(popularity),2)
+mean_revenue = round(mean(revenue),2)
+
+```
 
 ### c. Training Data
 
@@ -56,8 +72,42 @@ movies_data %>%
 ### a. Graphs of Specific Data
 
 ### b. Linear Regression Summary and Line
+```{r}
+#linear regression model of budget vs vote_average
+linear_1 = lm(budget ~ vote_average, data = movies_data)
+summary(linear_1)
+
+#graph of above data
+plot(budget~ vote_average, data= movies_data, xlab = "Voter Average", ylab = "Budget", main = "Scatterplot of Budget vs Voter Average")
+abline(linear_1, col = "red")
+
+plot(linear_1)
+
+#linear regression model of revenue vs popularity
+linear_2 = lm(revenue ~ popularity, data = movies_data)
+summary(linear_2)
+
+plot(linear_2)
+
+plot(revenue ~ popularity, data= movies_data, xlab = "Popularity", ylab = "Revenue", main = "Scatterplot of Revenue vs Popularity")
+abline(linear_2, col = "purple")
+
+
+```
+
 
 ### c. Multiple Linear Regression Summary
+```{r}
+multi_linear = lm(revenue ~ budget + vote_average, data = movies_data)
+summary(multi_linear)
+
+#confidence interval insert here 
+```
+```{r}
+#logit.model.test = glm(revenue ~ budget + vote_average, 
+                       #data = movies_data,family = binomial(link = "logit"))
+```
+
 
 ## IV. Discussion
 
