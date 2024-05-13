@@ -41,7 +41,8 @@ $$\alpha=0.05$$
 ```{r}
 movies_data %>%
   group_by(title) %>%
-  filter(budget != 0 & revenue != 0)
+  filter(budget != 0 & revenue != 0 & vote_count > 100) %>%
+  arrange(desc(vote_average))
 ```
 
 ### b. Choosing Important Values on Dataset
