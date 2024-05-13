@@ -1,11 +1,6 @@
 ---
 title: "Statistical Learning in Movies"
 author: "Max Sellers, Claire Martino, Ari Augustine, and Rim Nassiri"
-header-includes:
-  - \usepackage{float}
-  - \usepackage{amsmath}
-  - \usepackage{dplyr}
-  - \floatplacement{figure}{H}
 output:
   pdf_document: default
   html_document:
@@ -14,6 +9,7 @@ output:
 
 ```{r echo=FALSE}
 # if not installed use: install.packages("package_name")
+library(dplyr)
 suppressWarnings(library(readxl))
 suppressWarnings(library(psych))
 suppressWarnings(suppressPackageStartupMessages(library(ggplot2)))
@@ -25,12 +21,7 @@ movies_data= read.csv("MOVIES.csv")
 ```
 
 
-$$H_T: \textrm{There is not difference in Average Wi-Fi speed between Hanson Hall of Science and Old Main.}$$
-$$H_A: \textrm{There is a difference between in average Wi-Fi speeds between Hanson Hall of Science and Old main.}$$
-$$\alpha=0.05$$
-
 ### Abstract
-
 
 
 ## I. Introduction
@@ -39,27 +30,23 @@ $$\alpha=0.05$$
 
 ### a. Cleaning Data
 ```{r}
-#movies_data %>%
-  #group_by(title) %>%
-  #filter(budget != 0 & revenue != 0 & vote_count > 100) %>%
-  #arrange(desc(vote_average))
+movies_data = movies_data %>%
+  group_by(title) %>%
+  filter(budget != 0 & revenue != 0 & vote_count > 100) %>%
+  arrange(desc(vote_average))
 ```
 
 ### b. Choosing Important Values on Dataset
 ```{r}
-budget = movies_data$budget
-popularity = movies_data$popularity
-revenue = movies_data$revenue
-genre = movies_data$genre
 
 #number of cateogories and varaibles in the dataset
 catagories = ncol(movies_data)
 var = nrow(movies_data)
 
 #means of variables that will be using in analysis
-mean_budget = round(mean(budget),2)
-mean_popularity = round(mean(popularity),2)
-mean_revenue = round(mean(revenue),2)
+mean_budget = round(mean(movies_data$budget),2)
+mean_popularity = round(mean(movies_data$popularity),2)
+mean_revenue = round(mean(movies_data$revenue),2)
 
 ```
 
@@ -75,26 +62,42 @@ mean_revenue = round(mean(revenue),2)
 ```{r}
 #linear regression model of budget vs vote_average
 linear_1 = lm(budget ~ vote_average, data = movies_data)
-summary(linear_1)
+summary_linear1 = summary(linear_1)
+summary_linear1
+
+r_2_lin_1 = summary_linear1$r.squared
+r_2_lin_1
 
 #graph of above data
 plot(budget~ vote_average, data= movies_data, xlab = "Voter Average", ylab = "Budget", main = "Scatterplot of Budget vs Voter Average")
 abline(linear_1, col = "red")
 
-plot(linear_1)
-
-#linear regression model of revenue vs popularity
-linear_2 = lm(revenue ~ popularity, data = movies_data)
-summary(linear_2)
-
-plot(linear_2)
-
-plot(revenue ~ popularity, data= movies_data, xlab = "Popularity", ylab = "Revenue", main = "Scatterplot of Revenue vs Popularity")
-abline(linear_2, col = "purple")
-
+#plot(linear_1)
 
 ```
 
+Since the Pr(>|t|) value of voter average is <2e-16, and this value is less than the standard level of significance of 0.05, this shows that there is a statistically significant relationship between voter average and budget.
+
+In order to assess the relationship between the predictor and the response variable, you must look at the $R^2$ value. In this case, $R^2$ = `r r_2_lin_1`. Since this value is closer to 0 than it is 1, this indicates a weak relationship between voter average and budget.
+
+
+```{r}
+#linear regression model of revenue vs popularity
+linear_2 = lm(revenue ~ popularity, data = movies_data)
+summary_linear2 = summary(linear_2)
+
+r_2_lin_2 = summary_linear2$r.squared
+r_2_lin_2
+
+#plot(linear_2)
+
+plot(revenue ~ popularity, data= movies_data, xlab = "Popularity", ylab = "Revenue", main = "Scatterplot of Revenue vs Popularity")
+abline(linear_2, col = "purple")
+```
+
+Since the Pr(>|t|) value of popularity is <2e-16, and this value is less than the standard level of significance of 0.05, this shows that there is a statistically significant relationship between popularity and revenue.
+
+In order to assess the relationship between the predictor and the response variable, you must look at the $R^2$ value. In this case, $R^2$ = `r r_2_lin_2`. Since this value is closer to 0 than it is 1, this indicates a mildly weak relationship between revenue and popularity.
 
 ### c. Multiple Linear Regression Summary
 ```{r}
@@ -102,10 +105,6 @@ multi_linear = lm(revenue ~ budget + vote_average, data = movies_data)
 summary(multi_linear)
 
 #confidence interval insert here 
-```
-```{r}
-#logit.model.test = glm(revenue ~ budget + vote_average, 
-                       #data = movies_data,family = binomial(link = "logit"))
 ```
 
 
