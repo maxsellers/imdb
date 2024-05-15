@@ -22,6 +22,8 @@ movies_data= read.csv("MOVIES.csv")
 
 ### Abstract
 
+To be a producer of film, understanding the factors influencing movie success is extremely important. This project uses statistical learning techniques to predict how successful a film will be critically and popularity-wise. Using a dataset compiled from the Internet Movie Database (IMDB), we delve into the relationships between these variables and movie ratings. Our goal in this project is to use variables like the movie’s budget, revenue, runtime, rating, and popularity we can determine what the film’s critical and commercial success could be by using models like simple and multiple linear regression. 
+
 ## I. Introduction
 
 ## II. Methods
