@@ -150,6 +150,22 @@ model_train = glm(formula = y.trn ~ x.trn, data = train.data_frame)
 summary(model_train)
 
 plot(model_train)
+
+actual = movies_test$revenue
+predicted = ifelse(predict(model_train) > 0, "Yes", "No")
+
+error_function = function(actual, predicted){
+  mean(actual != predicted)
+}
+
+1- error_function(actual = actual, predicted = predicted)
+
+library(caret)
+train_table = table(Prediced = predicted, Actual = y.trn)
+
+train_confusion_matrix = confusionMatrix(train_table, positive = "Yes")
+
+train_confusion_matrix
  
 ```
 
