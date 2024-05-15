@@ -7,9 +7,9 @@ output:
     df_print: paged
 ---
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 # if not installed use: install.packages("package_name")
-library(dplyr)
+suppressWarnings(library(dplyr))
 suppressWarnings(library(readxl))
 suppressWarnings(library(psych))
 suppressWarnings(suppressPackageStartupMessages(library(ggplot2)))
@@ -22,7 +22,7 @@ movies_data= read.csv("MOVIES.csv")
 
 
 ### Abstract
-
+In
 
 ## I. Introduction
 
@@ -32,8 +32,9 @@ movies_data= read.csv("MOVIES.csv")
 ```{r}
 movies_data = movies_data %>%
   group_by(title) %>%
-  filter(budget != 0 & revenue != 0 & vote_count > 100) %>%
+  filter(budget >= 1000 & revenue >= 1000 & vote_count > 100) %>%
   arrange(desc(vote_average))
+movies_data
 ```
 
 ### b. Choosing Important Values on Dataset
@@ -93,6 +94,17 @@ r_2_lin_2
 
 plot(revenue ~ popularity, data= movies_data, xlab = "Popularity", ylab = "Revenue", main = "Scatterplot of Revenue vs Popularity")
 abline(linear_2, col = "purple")
+
+linear_3 = lm(vote_average ~ budget, data = movies_data)
+summary_linear3 = summary(linear_2)
+
+r_2_lin_3 = summary_linear3$r.squared
+r_2_lin_3
+
+#plot(linear_2)
+
+plot(vote_average ~ budget, data= movies_data, xlab = "Popularity", ylab = "Revenue", main = "Scatterplot of Revenue vs Popularity")
+abline(linear_3, col = "purple")
 ```
 
 Since the Pr(>|t|) value of popularity is <2e-16, and this value is less than the standard level of significance of 0.05, this shows that there is a statistically significant relationship between popularity and revenue.
@@ -103,6 +115,9 @@ In order to assess the relationship between the predictor and the response varia
 ```{r}
 multi_linear = lm(revenue ~ budget + vote_average, data = movies_data)
 summary(multi_linear)
+
+multi_linear2 = lm(vote_average ~ budget + revenue + popularity + runtime, data = movies_data)
+summary(multi_linear2)
 
 #confidence interval insert here 
 ```
