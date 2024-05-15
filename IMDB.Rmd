@@ -32,9 +32,8 @@ In
 ```{r}
 movies_data = movies_data %>%
   group_by(title) %>%
-  filter(budget >= 1000 & revenue >= 1000 & vote_count > 100) %>%
+  filter(budget >= 1000000 & revenue >= 1000000 & vote_count > 100) %>%
   arrange(desc(vote_average))
-movies_data
 ```
 
 ### b. Choosing Important Values on Dataset
