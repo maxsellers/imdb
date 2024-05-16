@@ -67,7 +67,7 @@ The mean runtime of the movies is `r mean_runtime`.
 
 num_obs = nrow(movies_data)  #extracting the total rows from the data set
 
-movies_indx = sample(num_obs, size = trunc(0.6*num_obs))
+movies_indx = sample(num_obs, size = trunc(0.5*num_obs))
 
 #training data set:
 movies_train = movies_data[movies_indx,]
@@ -123,20 +123,20 @@ The scatter plot with the linear regression line shows this mildy weak positive 
 
 
 ```{r}
-linear_3 = lm(vote_average ~ budget, data = movies_data)
+linear_3 = lm(vote_average ~ popularity, data = movies_data)
 summary_linear3 = summary(linear_3)
 
 r_2_lin_3 = summary_linear3$r.squared
 
-plot(vote_average ~ budget, data= movies_data, xlab = "Popularity", ylab = "Revenue", main = "Scatterplot of Revenue vs Popularity")
+plot(vote_average ~ popularity, data= movies_data, xlab = "Popularity", ylab = "Rating", main = "Scatterplot of Rating vs Popularity")
 abline(linear_3, col = "purple")
 ```
 
-Since the Pr(>|t|) value of popularity is 8.77e-07, and this value is less than the standard level of significance of 0.05, this shows that there is a statistically significant relationship between popularity and revenue.
+Since the Pr(>|t|) value of popularity is 8.77e-07, and this value is less than the standard level of significance of 0.05, this shows that there is a statistically significant relationship between popularity and rating.
 
-In order to assess the relationship between the predictor and the response variable, you must look at the $R^2$ value. In this case, $R^2$ = `r r_2_lin_3`. Since this value is closer to 0 than it is 1, this indicates a weak relationship between revenue and popularity.
+In order to assess the relationship between the predictor and the response variable, you must look at the $R^2$ value. In this case, $R^2$ = `r r_2_lin_3`. Since this value is closer to 0 than it is 1, this indicates a weak relationship between rating and popularity.
 
-The scatter plot with the linear regression line shows this weak negative relationship between revenue and popularity.
+The scatter plot with the linear regression line shows this weak positive relationship between rating and popularity.
 
 
 ### b. Trained Simple Linear Regression Summary
@@ -151,17 +151,19 @@ summary(model_train)
 
 plot(model_train)
 
-actual = movies_test$revenue
-predicted = ifelse(predict(model_train) > 0, "Yes", "No")
+actual = ifelse(movies_test$revenue> 100000000, "Yes", "No")
+head(actual)
+predicted = ifelse(predict(model_train) > 100000000, "Yes", "No")
+head(predicted)
 
 error_function = function(actual, predicted){
   mean(actual != predicted)
 }
 
-1- error_function(actual = actual, predicted = predicted)
-
+error_function(actual = actual, predicted = predicted)
+1 - error_function(actual = actual, predicted = predicted)
 library(caret)
-train_table = table(Prediced = predicted, Actual = y.trn)
+train_table = table(predicted = predicted, Actual = actual)
 
 train_confusion_matrix = confusionMatrix(train_table, positive = "Yes")
 
