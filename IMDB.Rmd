@@ -26,8 +26,12 @@ To be a producer of film, understanding the factors influencing movie success is
 
 ## I. Introduction
 
-In the dynamic film industry, understanding the factors that contribute to a movie's success can be unpredictable. Our data project examines a movie dataset, aiming to uncover relationships between key variables and a movie's performance. This analysis is motivated by an interest in understanding if there are underlying patterns that govern movie success. By using statistical models, particularly linear regression, we aim to find out how significant each variable is in affecting a movie’s success.  
+In the dynamic film industry, understanding the factors that contribute to a movie's success can be unpredictable. Our data project examines a movie dataset, aiming to uncover relationships between key variables and a movie's performance. This analysis is motivated by an interest in understanding if there are underlying patterns that govern movie success. By using statistical models, particularly linear regression, we aim to find out how significant each variable is in affecting a movie’s success.
+
+
 The movie dataset utilized in this project has a wide range of films spanning different genres, release years, and production scales. Each movie entry in the dataset includes information on key variables providing insights into various aspects such as financial investment and audience engagement. The variables we’ve selected for further analysis include revenue, budget, popularity, rating, and runtime. By analyzing the data, we aim to identify patterns and trends driving success in the film industry. 
+
+
 In our initial exploration of the dataset, we have formulated hypotheses regarding the potential impact of these variables—budget, popularity, rating, and runtime—on a movie's revenue. These hypotheses are based on common assumptions and consumer behavior. We anticipate that a larger budget will be positively correlated with higher revenue. Greater investment typically enables higher production values, marketing campaigns, and wider distribution, all of which contribute to higher returns. Additionally, higher levels of popularity and rating are predicted to correlate positively with revenue since an increased level of interest usually results in more sales. There may be a non-linear relationship between movie runtime and revenue since it's difficult to anticipate and may not have substantial significance. Through exploratory data analysis and model building, we hope to gain deeper insights into the factors influencing a movie's revenue.
 
 
@@ -67,7 +71,7 @@ The mean voter average of the movies `r mean_vote_average`.
 The mean runtime of the movies is `r mean_runtime`. 
 
 
-### c. Training/Testing Data [USE SOMEWHERE]
+### c. Training/Testing Data 
 ```{r}
 
 num_obs = nrow(movies_data)  #extracting the total rows from the data set
@@ -188,3 +192,10 @@ For our training data set we compared the budget to revenue, which is the most v
 
 Overall, it is incredibly hard to determine how successful a movie would be given these parameters. This project gave us more questions than answers. Do the writers or directors determine more of the success of a movie, than the budget of the movie? Is it wise to use Machine Learning on creative arts like film, art, and music?
 
+## Appendix
+```{r}
+library(readxl)
+Data_Dictionary = read_excel("Data_Dictionary.xlsx")
+Data_Dictionary
+```
+Data from https://www.kaggle.com/datasets/jacopoferretti/idmb-movies-user-friendly
