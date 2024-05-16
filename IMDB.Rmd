@@ -152,25 +152,26 @@ x.trn = movies_train$budget
 train.data_frame = data.frame(y.trn, x.trn)
 
 model_train = glm(formula = y.trn ~ x.trn, data = train.data_frame)
-summary(model_train)
 
 plot(model_train)
 
-actual = ifelse(movies_test$revenue> 100000000, "Yes", "No")
-head(actual)
-predicted = ifelse(predict(model_train) > 100000000, "Yes", "No")
-head(predicted)
+actual = ifelse(movies_test$revenue >= 100000000, "Box Office Success", "Box Office Flop")
+predicted = ifelse(predict(model_train) >= 100000000, "Box Office Success", "Box Office Flop")
 
 error_function = function(actual, predicted){
   mean(actual != predicted)
 }
 
 error_function(actual = actual, predicted = predicted)
-1 - error_function(actual = actual, predicted = predicted)
+
+accuracy = round(100*(1 - error_function(actual = actual, predicted = predicted)),2)
 library(caret)
+
 train_table = table(predicted = predicted, Actual = actual)
 
-train_confusion_matrix = confusionMatrix(train_table, positive = "Yes")
+train_confusion_matrix = confusionMatrix(train_table, positive = "Box Office Success")
+
+sensitivity = round(100*(specificity(train_table)),2)
 
 train_confusion_matrix
  
@@ -179,4 +180,11 @@ train_confusion_matrix
 
 ## IV. Discussion
 
+With the results shown in this project, the data shows how unpredictable a film’s success can be. Given the provided variables of budget, voter average, popularity, and revenue it is hard to determine how critically acclaimed and how profitable a movie could be. Throughout all of our actual simple linear regression models, the models’ had a very low p-value meaning the model was statistically significant, but had an R-squared value that was much closer to 0 than 1 meaning the relationship was insignificant. 
+
+This means having a high budget would not correlate to a high rating, which shows that producers do not need to always need to make the big budget movie to get critical aclaim. For example, the film Whiplash had a high rating of 8.3, but only had a budget of $3.3 million. Having a popular movie does not mean it made a lot of money in its box office run, rather that it had a cult following over time or had better replay value. John Wick is one the most popular movies in the past decade, but had a relatively low box office run of $88 million. Also, a popular movie does not mean it would be critically aclaimed. The most popular movie in this dataset was Minions and it had a tame rating of 6.4 which is widely considered as an average rating on the website. 
+
+For our training data set we compared the budget to revenue, which is the most valuable comparison for movie producers. In the confusion matrix, we used the metric of if the revenue is greater than $100 million it is a success and if not it is a flop. After training the model, the training data was accurate `r accuracy`% which is below standard for training datasets. The sensitivity of `r sensitivity`% is bad because that means when a movie is a box office success it is only predicted to be a success `r sensitivity`% of the time. 
+
+Overall, it is incredibly hard to determine how successful a movie would be given these parameters. This project gave us more questions than answers. Do the writers or directors determine more of the success of a movie, than the budget of the movie? Is it wise to use Machine Learning on creative arts like film, art, and music?
 
