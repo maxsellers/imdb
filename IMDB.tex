@@ -1,0 +1,458 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Statistical Learning in Movies},
+  pdfauthor={Max Sellers, Claire Martino, Ari Augustine, and Rim Nassiri},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Statistical Learning in Movies}
+\author{Max Sellers, Claire Martino, Ari Augustine, and Rim Nassiri}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsubsection{Abstract}\label{abstract}
+
+To be a producer of film, understanding the factors influencing movie
+success is extremely important. This project uses statistical learning
+techniques to predict how successful a film will be critically and
+popularity-wise. Using a dataset compiled from the Internet Movie
+Database (IMDB), we delve into the relationships between these variables
+and movie ratings. Our goal in this project is to use variables like the
+movie's budget, revenue, runtime, rating, and popularity we can
+determine what the film's critical and commercial success could be by
+using models like simple and multiple linear regression.
+
+\subsection{I. Introduction}\label{i.-introduction}
+
+In the dynamic film industry, understanding the factors that contribute
+to a movie's success can be unpredictable. Our data project examines a
+movie dataset, aiming to uncover relationships between key variables and
+a movie's performance. This analysis is motivated by an interest in
+understanding if there are underlying patterns that govern movie
+success. By using statistical models, particularly linear regression, we
+aim to find out how significant each variable is in affecting a movie's
+success.\\
+The movie dataset utilized in this project has a wide range of films
+spanning different genres, release years, and production scales. Each
+movie entry in the dataset includes information on key variables
+providing insights into various aspects such as financial investment and
+audience engagement. The variables we've selected for further analysis
+include revenue, budget, popularity, rating, and runtime. By analyzing
+the data, we aim to identify patterns and trends driving success in the
+film industry. In our initial exploration of the dataset, we have
+formulated hypotheses regarding the potential impact of these
+variables---budget, popularity, rating, and runtime---on a movie's
+revenue. These hypotheses are based on common assumptions and consumer
+behavior. We anticipate that a larger budget will be positively
+correlated with higher revenue. Greater investment typically enables
+higher production values, marketing campaigns, and wider distribution,
+all of which contribute to higher returns. Additionally, higher levels
+of popularity and rating are predicted to correlate positively with
+revenue since an increased level of interest usually results in more
+sales. There may be a non-linear relationship between movie runtime and
+revenue since it's difficult to anticipate and may not have substantial
+significance. Through exploratory data analysis and model building, we
+hope to gain deeper insights into the factors influencing a movie's
+revenue.
+
+\subsection{II. Methods}\label{ii.-methods}
+
+\subsubsection{a. Cleaning Data}\label{a.-cleaning-data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies\_data }\OtherTok{=}\NormalTok{ movies\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(title) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(budget }\SpecialCharTok{\textgreater{}=} \DecValTok{1000000} \SpecialCharTok{\&}\NormalTok{ revenue }\SpecialCharTok{\textgreater{}=} \DecValTok{1000000} \SpecialCharTok{\&}\NormalTok{ vote\_count }\SpecialCharTok{\textgreater{}} \DecValTok{100}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(vote\_average))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{b. Choosing Important Values on
+Dataset}\label{b.-choosing-important-values-on-dataset}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#number of categories and variables in the dataset}
+\NormalTok{categories }\OtherTok{=} \FunctionTok{ncol}\NormalTok{(movies\_data)}
+\NormalTok{var }\OtherTok{=} \FunctionTok{nrow}\NormalTok{(movies\_data)}
+
+\CommentTok{\#means of variables that will be using in analysis}
+\NormalTok{mean\_budget }\OtherTok{=} \FunctionTok{format}\NormalTok{(}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(movies\_data}\SpecialCharTok{$}\NormalTok{budget),}\DecValTok{2}\NormalTok{),}\AttributeTok{scientific=}\NormalTok{F)}
+\NormalTok{mean\_popularity }\OtherTok{=} \FunctionTok{format}\NormalTok{(}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(movies\_data}\SpecialCharTok{$}\NormalTok{popularity),}\DecValTok{2}\NormalTok{), }\AttributeTok{scientific =}\NormalTok{ F)}
+\NormalTok{mean\_revenue }\OtherTok{=} \FunctionTok{format}\NormalTok{(}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(movies\_data}\SpecialCharTok{$}\NormalTok{revenue),}\DecValTok{2}\NormalTok{), }\AttributeTok{scientific =}\NormalTok{ F)}
+\NormalTok{mean\_vote\_average }\OtherTok{=} \FunctionTok{format}\NormalTok{(}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(movies\_data}\SpecialCharTok{$}\NormalTok{vote\_average),}\DecValTok{2}\NormalTok{), }\AttributeTok{scientific =}\NormalTok{ F)}
+\NormalTok{mean\_runtime }\OtherTok{=} \FunctionTok{format}\NormalTok{(}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(movies\_data}\SpecialCharTok{$}\NormalTok{runtime),}\DecValTok{2}\NormalTok{), }\AttributeTok{scientific =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 12 categories in this movies dataset that we will be using.
+There are 3566 rows in this dataset that we will be using.
+
+The mean budget of the dataset is 42149142. The mean popularity of the
+movies is 12.34. The mean revenue of the movies is 130185255. The mean
+voter average of the movies 6.39. The mean runtime of the movies is
+110.84.
+
+\subsubsection{c.~Training/Testing Data {[}USE
+SOMEWHERE{]}}\label{c.-trainingtesting-data-use-somewhere}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num\_obs }\OtherTok{=} \FunctionTok{nrow}\NormalTok{(movies\_data)  }\CommentTok{\#extracting the total rows from the data set}
+
+\NormalTok{movies\_indx }\OtherTok{=} \FunctionTok{sample}\NormalTok{(num\_obs, }\AttributeTok{size =} \FunctionTok{trunc}\NormalTok{(}\FloatTok{0.5}\SpecialCharTok{*}\NormalTok{num\_obs))}
+
+\CommentTok{\#training data set:}
+\NormalTok{movies\_train }\OtherTok{=}\NormalTok{ movies\_data[movies\_indx,]}
+
+\CommentTok{\#test data set:}
+\NormalTok{movies\_test }\OtherTok{=}\NormalTok{ movies\_data[}\SpecialCharTok{{-}}\NormalTok{movies\_indx,]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{III. Results}\label{iii.-results}
+
+\subsubsection{a. Linear Regression Summary and
+Line}\label{a.-linear-regression-summary-and-line}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#linear regression model of budget vs vote\_average}
+\NormalTok{linear\_1 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(budget }\SpecialCharTok{\textasciitilde{}}\NormalTok{ vote\_average, }\AttributeTok{data =}\NormalTok{ movies\_data)}
+\NormalTok{summary\_linear1 }\OtherTok{=} \FunctionTok{summary}\NormalTok{(linear\_1)}
+
+\NormalTok{r\_2\_lin\_1 }\OtherTok{=}\NormalTok{ summary\_linear1}\SpecialCharTok{$}\NormalTok{r.squared}
+
+
+\CommentTok{\#graph of above data}
+\FunctionTok{plot}\NormalTok{(budget}\SpecialCharTok{\textasciitilde{}}\NormalTok{ vote\_average, }\AttributeTok{data=}\NormalTok{ movies\_data, }\AttributeTok{xlab =} \StringTok{"Voter Average"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Budget"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Scatterplot of Budget vs Voter Average"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(linear\_1, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{IMDB_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+Since the Pr(\textgreater\textbar t\textbar) value of voter average is
+8.77e\_07, and this value is less than the standard level of
+significance of 0.05, this shows that there is a statistically
+significant relationship between voter average and budget.
+
+In order to assess the relationship between the predictor and the
+response variable, you must look at the \(R^2\) value. In this case,
+\(R^2\) = 0.006763. Since this value is closer to 0 than it is 1, this
+indicates a weak relationship between voter average and budget.
+
+This scatterplot with the linear regression line shows a weak and
+negative relationship between between budget and voter average.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#linear regression model of revenue vs popularity}
+\NormalTok{linear\_2 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(revenue }\SpecialCharTok{\textasciitilde{}}\NormalTok{ popularity, }\AttributeTok{data =}\NormalTok{ movies\_data)}
+\NormalTok{summary\_linear2 }\OtherTok{=} \FunctionTok{summary}\NormalTok{(linear\_2)}
+
+\NormalTok{r\_2\_lin\_2 }\OtherTok{=}\NormalTok{ summary\_linear2}\SpecialCharTok{$}\NormalTok{r.squared}
+
+
+\FunctionTok{plot}\NormalTok{(revenue }\SpecialCharTok{\textasciitilde{}}\NormalTok{ popularity, }\AttributeTok{data=}\NormalTok{ movies\_data, }\AttributeTok{xlab =} \StringTok{"Popularity"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Revenue"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Scatterplot of Revenue vs Popularity"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(linear\_2, }\AttributeTok{col =} \StringTok{"purple"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{IMDB_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+Since the Pr(\textgreater\textbar t\textbar) value of popularity is
+\textless2e-16, and this value is less than the standard level of
+significance of 0.05, this shows that there is a statistically
+significant relationship between popularity and revenue.
+
+In order to assess the relationship between the predictor and the
+response variable, you must look at the \(R^2\) value. In this case,
+\(R^2\) = 0.1547861. Since this value is closer to 0 than it is 1, this
+indicates a mildly weak relationship between revenue and popularity.
+
+The scatter plot with the linear regression line shows this mildy weak
+positive relationship between revenue and popularity.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{linear\_3 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(vote\_average }\SpecialCharTok{\textasciitilde{}}\NormalTok{ popularity, }\AttributeTok{data =}\NormalTok{ movies\_data)}
+\NormalTok{summary\_linear3 }\OtherTok{=} \FunctionTok{summary}\NormalTok{(linear\_3)}
+
+\NormalTok{r\_2\_lin\_3 }\OtherTok{=}\NormalTok{ summary\_linear3}\SpecialCharTok{$}\NormalTok{r.squared}
+
+\FunctionTok{plot}\NormalTok{(vote\_average }\SpecialCharTok{\textasciitilde{}}\NormalTok{ popularity, }\AttributeTok{data=}\NormalTok{ movies\_data, }\AttributeTok{xlab =} \StringTok{"Popularity"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Rating"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Scatterplot of Rating vs Popularity"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(linear\_3, }\AttributeTok{col =} \StringTok{"purple"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{IMDB_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+Since the Pr(\textgreater\textbar t\textbar) value of popularity is
+8.77e-07, and this value is less than the standard level of significance
+of 0.05, this shows that there is a statistically significant
+relationship between popularity and rating.
+
+In order to assess the relationship between the predictor and the
+response variable, you must look at the \(R^2\) value. In this case,
+\(R^2\) = 0.0185173. Since this value is closer to 0 than it is 1, this
+indicates a weak relationship between rating and popularity.
+
+The scatter plot with the linear regression line shows this weak
+positive relationship between rating and popularity.
+
+\subsubsection{b. Trained Simple Linear Regression
+Summary}\label{b.-trained-simple-linear-regression-summary}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y.trn }\OtherTok{=}\NormalTok{ movies\_train}\SpecialCharTok{$}\NormalTok{revenue}
+\NormalTok{x.trn }\OtherTok{=}\NormalTok{ movies\_train}\SpecialCharTok{$}\NormalTok{budget}
+
+\NormalTok{train.data\_frame }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(y.trn, x.trn)}
+
+\NormalTok{model\_train }\OtherTok{=} \FunctionTok{glm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ y.trn }\SpecialCharTok{\textasciitilde{}}\NormalTok{ x.trn, }\AttributeTok{data =}\NormalTok{ train.data\_frame)}
+\FunctionTok{summary}\NormalTok{(model\_train)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = y.trn ~ x.trn, data = train.data_frame)
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 4.569e+06  4.492e+06   1.017    0.309    
+## x.trn       2.976e+00  7.355e-02  40.456   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1.937784e+16)
+## 
+##     Null deviance: 6.6227e+19  on 1782  degrees of freedom
+## Residual deviance: 3.4512e+19  on 1781  degrees of freedom
+## AIC: 71932
+## 
+## Number of Fisher Scoring iterations: 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(model\_train)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{IMDB_files/figure-latex/unnamed-chunk-9-1.pdf}
+\includegraphics{IMDB_files/figure-latex/unnamed-chunk-9-2.pdf}
+\includegraphics{IMDB_files/figure-latex/unnamed-chunk-9-3.pdf}
+\includegraphics{IMDB_files/figure-latex/unnamed-chunk-9-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{actual }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(movies\_test}\SpecialCharTok{$}\NormalTok{revenue}\SpecialCharTok{\textgreater{}} \DecValTok{100000000}\NormalTok{, }\StringTok{"Yes"}\NormalTok{, }\StringTok{"No"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(actual)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "No"  "No"  "Yes" "Yes" "No"  "Yes"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predicted }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{predict}\NormalTok{(model\_train) }\SpecialCharTok{\textgreater{}} \DecValTok{100000000}\NormalTok{, }\StringTok{"Yes"}\NormalTok{, }\StringTok{"No"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(predicted)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     1     2     3     4     5     6 
+##  "No"  "No" "Yes" "Yes"  "No" "Yes"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{error\_function }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(actual, predicted)\{}
+  \FunctionTok{mean}\NormalTok{(actual }\SpecialCharTok{!=}\NormalTok{ predicted)}
+\NormalTok{\}}
+
+\FunctionTok{error\_function}\NormalTok{(}\AttributeTok{actual =}\NormalTok{ actual, }\AttributeTok{predicted =}\NormalTok{ predicted)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4756029
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{error\_function}\NormalTok{(}\AttributeTok{actual =}\NormalTok{ actual, }\AttributeTok{predicted =}\NormalTok{ predicted)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5243971
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'caret' was built under R version 4.3.2
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: lattice
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{train\_table }\OtherTok{=} \FunctionTok{table}\NormalTok{(}\AttributeTok{predicted =}\NormalTok{ predicted, }\AttributeTok{Actual =}\NormalTok{ actual)}
+
+\NormalTok{train\_confusion\_matrix }\OtherTok{=} \FunctionTok{confusionMatrix}\NormalTok{(train\_table, }\AttributeTok{positive =} \StringTok{"Yes"}\NormalTok{)}
+
+\NormalTok{train\_confusion\_matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Confusion Matrix and Statistics
+## 
+##          Actual
+## predicted  No Yes
+##       No  650 391
+##       Yes 457 285
+##                                           
+##                Accuracy : 0.5244          
+##                  95% CI : (0.5009, 0.5478)
+##     No Information Rate : 0.6209          
+##     P-Value [Acc > NIR] : 1.00000         
+##                                           
+##                   Kappa : 0.0086          
+##                                           
+##  Mcnemar's Test P-Value : 0.02561         
+##                                           
+##             Sensitivity : 0.4216          
+##             Specificity : 0.5872          
+##          Pos Pred Value : 0.3841          
+##          Neg Pred Value : 0.6244          
+##              Prevalence : 0.3791          
+##          Detection Rate : 0.1598          
+##    Detection Prevalence : 0.4162          
+##       Balanced Accuracy : 0.5044          
+##                                           
+##        'Positive' Class : Yes             
+## 
+\end{verbatim}
+
+\subsection{IV. Discussion}\label{iv.-discussion}
+
+\end{document}
