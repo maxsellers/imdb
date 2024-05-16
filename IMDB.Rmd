@@ -102,7 +102,7 @@ plot(budget~ vote_average, data= movies_data, xlab = "Voter Average", ylab = "Bu
 abline(linear_1, col = "red")
 ```
 
-Since the Pr(>|t|) value of voter average is 8.77e_07, and this value is less than the standard level of significance of 0.05, this shows that there is a statistically significant relationship between voter average and budget.
+Since the Pr(>|t|) value of voter average is 8.77e-07, and this value is less than the standard level of significance of 0.05, this shows that there is a statistically significant relationship between voter average and budget.
 
 In order to assess the relationship between the predictor and the response variable, you must look at the $R^2$ value. In this case, $R^2$ = `r r_2_lin_1`. Since this value is closer to 0 than it is 1, this indicates a weak relationship between voter average and budget.
 
